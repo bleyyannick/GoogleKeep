@@ -4,6 +4,7 @@ class App {
        
         this.$placeholder = document;querySelector('#placeholder'); 
         this.$form = document.querySelector("#form"); 
+        this.$notes = document;querySelector("#notes"); 
         this.addEventListeners(); 
         this.$noteTitle = document.querySelector('#note-title'); 
         this.$formButtons = document.querySelector('#form-buttons'); 
@@ -62,6 +63,18 @@ class App {
     displayNotes() {
         const hasNotes = this.notes.length > 0; 
         this.$placeholder.style.display =  hasNotes ? "none" : "flex"; 
+        this.notes.map( note => `
+        <div style="background: ${note.color};" class="note">
+            <div class="${note.title && 'note-title'}">${note.title}</div>
+            <div class="note-text">${note.text}</div>
+            <div class="toolbar-container">
+                <div class="toolbar">
+                    <img class="toolbar-color" src="https://icon.now.sh/palette">
+                    <img class="toolbar-delete" src="https://icon.now.sh/delete">
+                </div>
+            </div>
+      </div>
+        `).join(""); 
     }
     
 }
